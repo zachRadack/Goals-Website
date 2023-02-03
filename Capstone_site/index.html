@@ -13,19 +13,17 @@ window.onload = function() {
   addBox_Start(document.querySelector(".menu"));
 };
 
-  function allowDrop(ev) {
-    ev.preventDefault();
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  let textareas = document.getElementsByTagName("textarea");
+  for (let i = 0; i < textareas.length; i++) {
+    textareas[i].disabled = true;
   }
-
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-
-
-
-
-
-
+}
 
 
 function drop(ev) {
@@ -33,14 +31,17 @@ function drop(ev) {
   var box = document.getElementById(data);
   var target = ev.target;
   var canvas = document.querySelector(".canvas");
-	addBox();
+  addBox();
+
   // Check if target is not the canvas or one of its children
   if (target.id !== 'canvas') {
     target = target.parentNode;
   }
 
-  box.style.left = ev.clientX - 25 + "px";
-  box.style.top = ev.clientY - 25 + "px";
+  canvas.appendChild(box);
+
+  box.style.left = ev.clientX - box.offsetWidth / 2 + "px";
+  box.style.top = ev.clientY - box.offsetHeight / 2 + "px";
 
 
   if (box.getAttribute("data-new") === "true") {
@@ -53,38 +54,41 @@ function drop(ev) {
     box.setAttribute("data-new", "false");
   }
 
-  target.appendChild(box);
   ev.preventDefault();
+  let textareas = document.getElementsByTagName("textarea");
+  for (let i = 0; i < textareas.length; i++) {
+    textareas[i].disabled = false;
+  }
+
 }
 
 
+function addBox() {
+  var menu = document.querySelector(".menu");
+  var box = document.createElement("div");
+  box.classList.add("box");
+  box.id = "Widget_" + boxCounter;
+  box.draggable = true;
+  box.ondragstart = function(ev) {
+    drag(ev);
+  };
+  box.setAttribute("data-new", "true");
+  menu.appendChild(box);
+  boxCounter++;
+}
 
-	function addBox() {
-	  var menu = document.querySelector(".menu");
-	  var box = document.createElement("div");
-	  box.classList.add("box");
-	  box.id = "Widget_" + boxCounter;
-	  box.draggable = true;
-	  box.ondragstart = function(ev) {
-		drag(ev);
-	  };
-	  box.setAttribute("data-new", "true");
-	  menu.appendChild(box);
-	  boxCounter++;
-	}
-	
-	function addBox_Start(parentElement) {
-	  var box = document.createElement("div");
-	  box.classList.add("box");
-	  box.id = "Widget_" + boxCounter;
-	  box.draggable = true;
-	  box.ondragstart = function(ev) {
-		drag(ev);
-	  };
-	  box.setAttribute("data-new", "true");
-	  parentElement.appendChild(box);
-	  boxCounter++;
-	}
+function addBox_Start(parentElement) {
+  var box = document.createElement("div");
+  box.classList.add("box");
+  box.id = "Widget_" + boxCounter;
+  box.draggable = true;
+  box.ondragstart = function(ev) {
+    drag(ev);
+  };
+  box.setAttribute("data-new", "true");
+  parentElement.appendChild(box);
+  boxCounter++;
+}
 
 
 </script>
