@@ -1,0 +1,45 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  height: 100%;
+}
+.menu {
+  width: 20%;
+  background-color: lightgray;
+  padding: 20px;
+}
+.canvas {
+  width: 80%;
+  background-color: white;
+  padding: 20px;
+  position: relative;
+}
+.box {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box textarea {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  text-align: left;
+  width: 150px;
+  height: 150px;
+  overflow: auto;
+  word-wrap: break-word;
+  resize: none;
+  display: block;
+}
+
+
