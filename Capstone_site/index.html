@@ -46,12 +46,15 @@ function drop(ev) {
 
   if (box.getAttribute("data-new") === "true") {
     var input = document.createElement("textarea");
+	
     input.value = "Box";
     input.onblur = function() {
       input.value = input.value || "Box";
     };
     box.appendChild(input);
     box.setAttribute("data-new", "false");
+	initResize(box);
+
   }
 
   ev.preventDefault();
@@ -88,6 +91,63 @@ function addBox_Start(parentElement) {
   box.setAttribute("data-new", "true");
   parentElement.appendChild(box);
   boxCounter++;
+}
+
+function resizeBox(box, e) {
+// Get the current mouse position
+let mouseX = e.clientX;
+let mouseY = e.clientY;
+
+// Get the current width and height of the box
+let boxWidth = box.offsetWidth;
+let boxHeight = box.offsetHeight;
+
+// Get the textarea within the box
+let textarea = box.querySelector("textarea");
+
+// Check if the mouse is on the right edge of the box
+if (mouseX > box.offsetLeft + boxWidth - 10) {
+// Update the width of the box
+box.style.width = mouseX - box.offsetLeft + 10 + "px";
+// Update the width of the textarea
+textarea.style.width = "100%";
+}
+// Update the height of the textarea
+textarea.style.height = "100%";
+
+// Check if the mouse is on the bottom edge of the box
+if (mouseY > box.offsetTop + boxHeight - 10) {
+// Update the height of the box
+box.style.height = mouseY - box.offsetTop + 10 + "px";
+
+
+function startResize(e, box) {
+  let resizing = true;
+  let currentX = e.clientX;
+  let currentY = e.clientY;
+  let initialWidth = box.offsetWidth;
+  let initialHeight = box.offsetHeight;
+
+  document.addEventListener("mousemove", resize);
+  document.addEventListener("mouseup", stopResize);
+
+  function resize(e) {
+    if (!resizing) {
+      return;
+    }
+    let dx = e.clientX - currentX;
+    let dy = e.clientY - currentY;
+    box.style.width = initialWidth + dx + "px";
+    box.style.height = initialHeight + dy + "px";
+  }
+
+  function stopResize() {
+    resizing = false;
+    document.removeEventListener("mousemove", resize);
+    document.removeEventListener("mouseup", stopResize);
+  }
+}
+}
 }
 
 
