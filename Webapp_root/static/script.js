@@ -1,5 +1,5 @@
-
 let boxCounter = 1;
+let widgets = [];
 
 window.onload = function() {
   addBox_Start(document.querySelector(".menu"));
@@ -23,7 +23,9 @@ function drop(ev) {
   var box = document.getElementById(data);
   var target = ev.target;
   var canvas = document.querySelector(".canvas");
+  if (box.getAttribute("data-new") === "true") {
   addBox();
+  }
 
   // Check if target is not the canvas or one of its children
   if (target.id !== 'canvas') {
@@ -35,6 +37,12 @@ function drop(ev) {
   box.style.left = ev.clientX - box.offsetWidth / 2 + "px";
   box.style.top = ev.clientY - box.offsetHeight / 2 + "px";
 
+  let widget = {
+    id: box.id,
+    x: ev.clientX,
+    y: ev.clientY
+  };
+  widgets.push(widget);
 
   if (box.getAttribute("data-new") === "true") {
     var input = document.createElement("textarea");
@@ -111,7 +119,18 @@ textarea.style.height = "100%";
 if (mouseY > box.offsetTop + boxHeight - 10) {
 // Update the height of the box
 box.style.height = mouseY - box.offsetTop + 10 + "px";
+}
+}
 
+function initResize(box) {
+  let resizer = document.createElement("div");
+  resizer.classList.add("resizer");
+  box.appendChild(resizer);
+
+  resizer.addEventListener("mousedown", (e) => {
+    startResize(e, box);
+  });
+}
 
 function startResize(e, box) {
   let resizing = true;
@@ -127,6 +146,10 @@ function startResize(e, box) {
     if (!resizing) {
       return;
     }
+    if (e.target !== box) {
+      stopResize();
+      return;
+    }
     let dx = e.clientX - currentX;
     let dy = e.clientY - currentY;
     box.style.width = initialWidth + dx + "px";
@@ -138,8 +161,6 @@ function startResize(e, box) {
     document.removeEventListener("mousemove", resize);
     document.removeEventListener("mouseup", stopResize);
   }
-}
-}
 }
 
 
