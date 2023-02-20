@@ -67,7 +67,7 @@ function addBox() {
 
 // Function for adding a new box. This is primarily for when the html first starts. Stuff breaks when touched
 function addBox_Start(parentElement) {
-    var box = $("<div>", { class: "box", id: "Widget_" + boxCounter, text: "Box" });
+    var box = $("<div>", { class: "box", id: "Widget_" + boxCounter});
     box.draggable({ helper: "clone", revert: "invalid" });
     box.attr("data-new", "true");
     parentElement.append(box);
