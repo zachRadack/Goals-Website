@@ -35,7 +35,7 @@ $(function() {
           var input = $('<textarea>').val('Box');
           // If the textarea loses focus and its value is empty, set it back to "Box"
           input.on('blur', function() {
-            $(this).val($(this).val() || 'Box');
+            $(this).val($(this).val());
           });
           box.append(input);
           box.attr('data-new', 'false');
