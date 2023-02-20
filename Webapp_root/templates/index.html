@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goals Website</title>
+    <!-- Add jQuery library link -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add jQueryUI library link -->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
-
-
   </head>
   <body>
     <header>
@@ -17,10 +17,9 @@
     </header>
 
     <main class="container" >
-      <div class="canvas" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div class="canvas"></div>
       <div class="menu" name="widget_holder">
-
-
+        <div class="box" id="Widget_1" data-new="true"></div>
       </div>
     </main>
 
