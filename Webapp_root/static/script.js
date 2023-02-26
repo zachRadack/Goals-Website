@@ -1,132 +1,98 @@
-let boxCounter = 3;
+$(document).ready(function() {
 
-let widgets = [];
-
-$(function() {
-  //addBox_Start($(".menu"));
-
-
-    // this should be applied to all widgets
-  $(".drag_widgets").draggable({
-    helper: "clone",
-    revert: "invalid",
-    start: function(e, ui) {
-      ui.helper.addClass("dragging"); // add class to differentiate from original element
-    },
-    stop: function(e, ui) {
-      ui.helper.removeClass("dragging"); // remove class on stop
-    }
-  });
-  
-
-  //this makes main_Widget droppable
-  $(".Main_widget.accept-droppable .widget-container").droppable({
-    accept: ".Mini_widget.accept-draggable",
-    drop: function(event, ui) {
-      var mini_widget_box = ui.draggable;
-      if (mini_widget_box.hasClass("Mini_widget")) {
-        if (mini_widget_box.attr('data-new') === 'true') {
-          // sees if its a new mini_widget, if so spawns a new one inside the menu area
-          if (mini_widget_box.hasClass("Mini_widget")) {
-            addBox_Mini_widget();
-            mini_widget_box.attr('data-new', false);
+    // Makes main widget draggable
+    $(".main_widget").draggable({
+        helper: "clone",
+        revert: "invalid",
+        start: function(e, ui) {
+            ui.helper.addClass("dragging"); // add class to differentiate from original element
+          },
+        stop: function(e, ui) {
+            ui.helper.removeClass("dragging"); // remove class on stop
           }
-        }
-        // append the mini widget to the container element inside the main widget
-        $(this).append(mini_widget_box);
-      }
-    }
-  }).sortable({
-  connectWith: ".Main_widget .widget-container",
-  items: ".Mini_widget",
-  handle: ".Mini_widget_handle"
+    });
+
+    // Makes mini widget draggable
+    $(".mini-widget").draggable({
+        helper: "clone",
+        revert: "invalid",
+        start: function(e, ui) {
+            ui.helper.addClass("dragging"); // add class to differentiate from original element
+          },
+        stop: function(e, ui) {
+            ui.helper.removeClass("dragging"); // remove class on stop
+          }
+    });
+    // Make canvas droppable
+    $(".canvas").droppable({
+        drop: function drop(ev, ui) {
+            console.log("hi");
+
+            
+            
+            // this makes it so only main_widget is accepted by canvas, the other methods seemed to get 
+            // really werid
+            if (ui.draggable.hasClass("main_widget")) {
+                var canvas = $('.canvas');
+                if (ui.draggable.attr('data-new') === 'true') {
+                    // if it's a new widget, then it means we do not want to rip it out of the factory
+                    // this part makes it so it just clones it instead
+                    box = widget_clone(ui,canvas);
+                    canvas_css_Setup(ui,box,canvas,"true")
+                }else{
+                    // if its not a new widget, it gets not cloning, because I am mean like that
+                    var box = ui.draggable;
+                    canvas.append(box);
+                    canvas_css_Setup(ui,box,canvas,"false")
+                }
+                
+                
+            
+        
+                
+          }}
+      });
+    
+    
+    
 });
 
-  
-  
-  
-  $(".canvas").droppable({
-    accept: ".Main_widget",
-    drop: function drop(ev, ui) {
-        var box = ui.draggable;
-        var canvas = $('.canvas');
-        if (ui.draggable.hasClass("Main_widget")) {
-        // If box is new, add a new one to the menu
-        if (box.attr('data-new') === 'true') {
-            
-                addBox_Main_widget();
-                box.attr('data-new', false);
-            
-            
+function widget_clone(ui,canvas) {
+    //Clone widget
+
+    var box = ui.draggable.clone();
+    canvas.append(box);
+    // Make the cloned element draggable, otherwise it would set and never move
+    box.draggable({
+        containment: "parent", // keep the element within the canvas
+            start: function(e, ui) {
+            ui.helper.addClass("dragging"); // add class to differentiate from original element
+        },
+        stop: function(e, ui) {
+            ui.helper.removeClass("dragging"); // remove class on stop
         }
-      
-        canvas.append(box);
-      
+    });
+    box.attr('data-new', false);
+    return box
+}
+
+function canvas_css_Setup(ui,box,canvas,new_widget){
+    //sets the position, if new_widget is true, then it will account for 
+    // the appending of the thing to whatever canvas its being appended too.
+    if(new_widget==="true"){
         // Set the position of the box based on the mouse position
         box.css({
-          'left': ui.position.left + 'px',
-          'top': ui.position.top + 'px'
+            'position': 'absolute',
+            'left': ui.position.left - canvas.offset().left + 'px',
+            'top': ui.position.top - canvas.offset().top+ 'px'
         });
-      
-        // Save the widget information
-        let widget = {
-          id: box.attr('id'),
-          x: ui.position.left,
-          y: ui.position.top
-        };
-        widgets.push(widget);
+    }else{
+        box.css({
+            'position': 'absolute',
+            'left': ui.position.left  + 'px',
+            'top': ui.position.top+ 'px'
+        });
 
-        return false;
-      }}
-  });
-
-  // Make the mini-widget sortable
-  $(".Mini_widget.accept-draggable").draggable({
-    helper: "clone",
-    revert: "invalid",
-    start: function(e, ui) {
-      ui.helper.addClass("dragging"); // add class to differentiate from original element
-    },
-    stop: function(e, ui) {
-      ui.helper.removeClass("dragging"); // remove class on stop
     }
-  });
-  $(".Mini_widget").sortable({
-    helper: "clone",
-    revert: "invalid",
-    containment: "parent",
-    start: function(e, ui) {
-      ui.item.addClass("dragging"); // add class to differentiate from original element
-    },
-    stop: function(e, ui) {
-      ui.item.removeClass("dragging"); // remove class on stop
-    }
-  });
-});
 
-
-// Function for adding a new box to the menu
-function addBox_Main_widget() {
-    var menu = $(".menu");
-    var new_main_widget = $("<div>").addClass("Main_widget drag_widgets accept-droppable").attr("id", "Widget_" + boxCounter).attr("data-new", "true").draggable({helper: "clone",cursor: "move",revert: "invalid"});
-    var widget_cointainer = $("<div>").addClass("widget-container ui-droppable ui-sortable").attr("id", "widget-container_" + boxCounter);
-    new_main_widget.append(widget_cointainer);
-    menu.append(new_main_widget);
-    boxCounter++;
-  }
-
-  function addBox_Mini_widget() {
-    var menu = $(".menu");
-    var box = $("<div>").addClass("Mini_widget").attr("id", "Mini_widget_" + boxCounter).attr("data-new", "true").draggable({helper: "clone",cursor: "move",revert: "invalid"});
-    menu.append(box);
-    boxCounter++;
-  }
-  
-  // Function for adding a new box. This is primarily for when the html first starts. Stuff breaks when touched
-  function addBox_Start(parentElement) {
-    var new_main_widget = $("<div>").addClass("Main_widget drag_widgets accept-droppable").attr("id", "Widget_" + boxCounter).attr("data-new", "true").draggable({helper: "clone",cursor: "move",revert: "invalid"});
-    var widget_cointainer = $("<div>").addClass("widget-container ui-droppable ui-sortable");
-    new_main_widget.append(widget_cointainer);
-      parentElement.append(new_main_widget);
-      boxCounter++;
-    }
+}
