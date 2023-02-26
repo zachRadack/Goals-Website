@@ -1,3 +1,7 @@
+
+// this .ready thing basically makes it so all the code in here will not run
+// untill all the html is finished loading,
+// critical for all jquerey or else it make get ~funky~
 $(document).ready(function() {
 
     // Makes main widget draggable
@@ -23,13 +27,10 @@ $(document).ready(function() {
             ui.helper.removeClass("dragging"); // remove class on stop
           }
     });
-    // Make canvas droppable
+
+    // Make canvas accept droppables
     $(".canvas").droppable({
         drop: function drop(ev, ui) {
-            console.log("hi");
-
-            
-            
             // this makes it so only main_widget is accepted by canvas, the other methods seemed to get 
             // really werid
             if (ui.draggable.hasClass("main_widget")) {
@@ -38,28 +39,73 @@ $(document).ready(function() {
                     // if it's a new widget, then it means we do not want to rip it out of the factory
                     // this part makes it so it just clones it instead
                     box = widget_clone(ui,canvas);
-                    canvas_css_Setup(ui,box,canvas,"true")
+                    canvas_css_Setup_canvas(ui,box,canvas,"true")
                 }else{
                     // if its not a new widget, it gets not cloning, because I am mean like that
                     var box = ui.draggable;
                     canvas.append(box);
-                    canvas_css_Setup(ui,box,canvas,"false")
+                    canvas_css_Setup_canvas(ui,box,canvas,"false")
                 }
-                
-                
-            
-        
-                
           }}
       });
-    
-    
-    
-});
+
+      // Make widget-container accept droppables
+    $(".widget-container").droppable({
+        drop: function drop(ev, ui) {
+            // this makes it so only main_widget is accepted by widgetContainer, the other methods seemed to get 
+            // really werid, we could also expand this by changing the mini-widget bit to change what we want it to be
+            if (ui.draggable.hasClass("mini-widget")) {
+                // grabs current widget
+                var widgetContainer = $(this);
+                if (ui.draggable.attr('data-new') === 'true') {
+                    // if it's a new widget, then it means we do not want to rip it out of the factory
+                    // this part makes it so it just clones it instead
+                    box = widget_clone(ui,widgetContainer);
+                    //canvas_css_Setup_canvas_widget(ui,box,canvas,"true")
+                }else{
+                    // if its not a new widget, it gets not cloning, because I am mean like that
+                    var box = ui.draggable;
+                    widgetContainer.append(box);
+                    //canvas_css_Setup_canvas_widget(ui,box,canvas,"false")
+                }
+
+
+        }
+        }
+
+      // end of ready function
+    });
+})
+
+
+function droppable_continer_cloned(container){
+    container.droppable({
+        drop: function drop(ev, ui) {
+            // this makes it so only main_widget is accepted by widgetContainer, the other methods seemed to get 
+            // really werid, we could also expand this by changing the mini-widget bit to change what we want it to be
+            if (ui.draggable.hasClass("mini-widget")) {
+                // grabs current widget
+                var widgetContainer = $(this);
+                if (ui.draggable.attr('data-new') === 'true') {
+                    // if it's a new widget, then it means we do not want to rip it out of the factory
+                    // this part makes it so it just clones it instead
+                    box = widget_clone(ui,widgetContainer);
+                    //canvas_css_Setup_canvas_widget(ui,box,canvas,"true")
+                }else{
+                    // if its not a new widget, it gets not cloning, because I am mean like that
+                    var box = ui.draggable;
+                    widgetContainer.append(box);
+                    //canvas_css_Setup_canvas_widget(ui,box,canvas,"false")
+                }
+        }
+        }
+      // end of ready function
+    });
+};
+
 
 function widget_clone(ui,canvas) {
-    //Clone widget
-
+    //Clone widget, this was made to be as universal as possible
     var box = ui.draggable.clone();
     canvas.append(box);
     // Make the cloned element draggable, otherwise it would set and never move
@@ -72,11 +118,17 @@ function widget_clone(ui,canvas) {
             ui.helper.removeClass("dragging"); // remove class on stop
         }
     });
+    droppable_continer_cloned(box.children('.widget-container'));
     box.attr('data-new', false);
     return box
 }
 
-function canvas_css_Setup(ui,box,canvas,new_widget){
+
+
+
+
+
+function canvas_css_Setup_canvas(ui,box,canvas,new_widget){
     //sets the position, if new_widget is true, then it will account for 
     // the appending of the thing to whatever canvas its being appended too.
     if(new_widget==="true"){
@@ -92,7 +144,5 @@ function canvas_css_Setup(ui,box,canvas,new_widget){
             'left': ui.position.left  + 'px',
             'top': ui.position.top+ 'px'
         });
-
     }
-
 }

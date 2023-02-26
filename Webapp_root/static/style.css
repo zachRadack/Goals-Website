@@ -7,9 +7,9 @@ html, body {
 }
 
 .widget {
-    
-    width: 60px;
-    height: 60px;
+    display: flex;
+    width: 100px;
+    height: 100px;
     background-color: #ff0000;
     color: #fff;
     text-align: center;
@@ -19,18 +19,29 @@ html, body {
     box-shadow: 2px 2px 5px #000;
     z-index: 3;
 }
-
+.widget-container {
+    display: flex;
+    width: 100%;
+    height: 75%;
+    border: none;
+    background-color: #14b61f;
+    z-index: 4;
+    align-self: flex-end;
+    flex-wrap:wrap;
+}
 .mini-widget {
     width: 20px;
     height: 20px;
-    background-color: #4d4d4d;
+    background-color:#1a14b6;
     color: #fff;
     text-align: center;
     line-height: 20px;
     border-radius: 5px;
     border: none;
-    box-shadow: 2px 2px 5px #1a14b6;
-    z-index: 4;
+    box-shadow: #4d4d4d;
+    z-index: 5;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
