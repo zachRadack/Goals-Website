@@ -9,7 +9,7 @@ html, body {
 .widget {
     display: flex;
     width: 100px;
-    height: 100px;
+    height: 200px;
     background-color: #ff0000;
     color: #fff;
     text-align: center;
@@ -30,8 +30,8 @@ html, body {
     flex-wrap:wrap;
 }
 .mini-widget {
-    width: 20px;
-    height: 20px;
+    width: 100px;
+    height: 40px;
     background-color:#1a14b6;
     color: #fff;
     text-align: center;
@@ -59,3 +59,43 @@ html, body {
 #widget-factory {
     margin-left: 20px;
 }
+
+.mini-widget textarea {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 10px;
+    outline: none;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    word-wrap: break-word;
+    resize: none;
+    display: block;
+    overflow-y: auto;
+    /*height: calc(100% - 10px);*/
+    max-height: calc(100% - 20px);
+  /*padding-bottom: 20px;*/
+}
+
+/* width */
+.mini-widget textarea::-webkit-scrollbar {
+    width: 10px;
+    overflow: hidden;
+  }
+
+  /* Track */
+  .mini-widget textarea::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+  /* Handle */
+  .mini-widget textarea::-webkit-scrollbar-thumb {
+    background: #288; 
+  }
+
+  /* Handle on hover */
+  .mini-widget textarea::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
