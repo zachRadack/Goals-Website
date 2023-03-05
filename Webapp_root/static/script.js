@@ -75,8 +75,10 @@ $(document).ready(function() {
         // adds sortable to widget container so it can sort miniwidgets
         // This is what allows users to move mini widgets around
         container.sortable({
-            connectWith: ".widget-container"
+            connectWith: ".widget-container",
+            placeholder: "mini-widget-placeholder"
         });
+        container.disableSelection();
     }
 
 

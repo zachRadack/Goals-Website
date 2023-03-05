@@ -66,10 +66,22 @@ html, body {
     box-shadow: #4d4d4d;
     z-index: 5;
     float: left;
-
+    
 }
 
 
+.mini-widget-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 100px;
+    background: #fffa90;
+}
+
+
+.textMiniWidget.mini-widget-placeholder{
+    margin: 0 1em 1em 0;
+
+}
 #canvas {
     position: absolute;
     top: 0;
@@ -104,6 +116,7 @@ html, body {
     /*height: calc(100% - 10px);*/
     max-height: calc(100% - 20px);
   /*padding-bottom: 20px;*/
+    margin: 1em 0 1em 0;
 }
 
 /* width */
