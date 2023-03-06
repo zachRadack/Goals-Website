@@ -109,7 +109,7 @@ $(document).ready(function() {
         // this creates a main widget which is draggable
         // What ever you add to this will be applied to the main
         // widgets in the canvas
-        box.children('.widget-container').css('width', box.width());
+        box.children('.widget-container');
         box.draggable({
             containment: "parent",
             start: function(e, ui) {
@@ -127,7 +127,7 @@ $(document).ready(function() {
         // realitve so it won't be draggable to whereever
         box.css({
             position: 'relative',
-            width:  box.parent().width(),
+            width:  "100%",
         });
         /////////////////////////////////////////
         // To add mini widgets, add a hasClass
