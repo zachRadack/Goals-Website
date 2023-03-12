@@ -1,44 +1,79 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset = "UTF-8" />
+        <meta charset="UTF-8" />
         <title>GoalPost.io Settings</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            h1 {
+                text-align: center;
+                margin-top: 50px;
+                font-size: 36px;
+            }
+            hr {
+                width: 60%;
+                margin: auto;
+                border: none;
+                border-top: 2px solid #ccc;
+            }
+            form {
+                width: 60%;
+                margin: auto;
+            }
+            label {
+                display: block;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            button {
+                display: block;
+                font-size: 16px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                background-color: #007AFF;
+                color: #fff;
+                cursor: pointer;
+                margin-bottom: 20px;
+            }
+            button:hover {
+                background-color: #0067d6;
+            }
+            footer {
+                text-align: center;
+                margin-top: 50px;
+                font-size: 14px;
+                color: #aaa;
+            }
+        </style>
     </head>
     <body>
         <h1>GoalPost.io Settings</h1>
         <hr>
         <br>
         <form>
-            <label></label>
-            <button></button>
+            <label>Account Settings</label>
+            <button>Edit Profile</button>
+            <button>Change Password</button>
+            <button>Deactivate Account</button>
             <br><br><br>
-            <label></label>
-            <button></button>
+            <label>Privacy</label>
+            <button>Set visibility settings</button>
             <br><br><br>
-            <label></label>
-            <button></button>
- <!-- Perhaps some of the buttons can be changed to levers, checkboxes, multiple-choice bullets, some other function/command. -->
+            <label>Color/Theme</label>
+            <button>Choose a theme</button>
             <br><br><br>
-            <label></label>
-            <button></button>
-            <br><br><br>
-            <label></label>
-            <button></button>
-            <br><br><br>
-            <label></label>
-            <button></button>
-            <br><br><br>
-            <label></label>
-            <button></button>
+            <label>Help & Support</label>
+            <button>FAQ</button>
+            <button>Contact Us</button>
             <br><br>
             <div>
-                <button type = "submit">Save Changes</button>
+                <button type="submit">Save Changes</button>
             </div>
             <br><br>
         </form>
- <!-- How many forms/divs would the Settings page need, and how many labels/buttons for one and/or the other?  Unless only one <form> is required, I would suggest adding at least one or two more forms to make the settings page complete.  Perhaps one can be the account settings while the other can be the color/themes, and maybe the other something else entirely. -->
-        <br><br>
-        
         <footer><b>Remember: </b> You can always go back and change the settings in its default form, or implement completely different settings of your choice.</footer>
     </body>
 </html>
