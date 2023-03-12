@@ -3,32 +3,65 @@
     <head>
         <meta charset = "UTF-8" />
         <title>GoalPost.io Sign Up</title>
+        <style>
+            body {
+                background-color: #f2f2f2;
+            }
+            h1 {
+                text-align: center;
+                font-size: 36px;
+                margin-top: 50px;
+            }
+            form {
+                margin: 0 auto;
+                max-width: 440px;
+                background-color: #fff;
+                padding: 80px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            label {
+                display: block;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                font-size: 18px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-bottom: 20px;
+            }
+            input[type="checkbox"] {
+                margin-right: 10px;
+            }
+            button[type="submit"] {
+                background-color: #007aff;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+        </style>
     </head>
     <body>
         <h1>GoalPost.io Sign Up</h1>
-        <hr>
-        <br><br>
-<!-- The login and signup div/form would probably require center alignment. -->
         <form>
-            <br><br>
             <label>Username</label>
-            <input type = "text" name = "username" size = "40" required>
-            <br><br>
+            <input type="text" name="username" required>
             <label>Email</label>
-            <input type = "text" name = "email" size = "40" required>
-            <br><br>
+            <input type="text" name="email" required>
             <label>Password</label>
-            <input type = "password" name = "password" size = "40" required>
-            <br><br>
+            <input type="password" name="password" required>
             <label>Confirm Password</label>
-            <input type = "password" name = "confirm" size = "40" required>
-            <br><br><br>
-    <!-- Adding other options to login and/or sign up (Google Gmail, Facebook, Twitter, etc.) is also known for many websites with login information.-->
-            <input type = "checkbox" checked = "checked">
-    <!-- For the signup.html page, do we really need a checkmark?  If not, it can always be removed. -->
-            <br><br>
-            <button type = "submit" name = "enter">Sign up</button>
-            <br><br>
+            <input type="password" name="confirm" required>
+            <input type="checkbox" checked>
+            <button type="submit" name="enter">Sign up</button>
         </form>
     </body>
 </html>
