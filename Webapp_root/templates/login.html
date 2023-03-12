@@ -3,24 +3,77 @@
     <head>
         <meta charset = "UTF-8" />
         <title>GoalPost.io Login</title>
+        <style>
+            body {
+                background-color: #f2f2f2;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                font-size: 36px;
+                text-align: center;
+                margin-top: 100px;
+                margin-bottom: 50px;
+            }
+            hr {
+                border: none;
+                height: 2px;
+                background-color: #d2d2d2;
+                margin: 0px 150px;
+            }
+            form {
+                margin: 0px auto;
+                max-width: 400px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            }
+            label {
+                display: block;
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            input[type="checkbox"] {
+                margin-bottom: 20px;
+            }
+            button[type="submit"] {
+                background-color: #0066CC;
+                color: #ffffff;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 18px;
+            }
+            button[type="submit"]:hover {
+                background-color: #0055b3;
+            }
+        </style>
     </head>
     <body>
         <h1>GoalPost.io Login</h1>
         <hr>
-        <br><br>
- <!-- The login and signup div/form would probably require center alignment. -->
+        <br>
         <form>
-            <br><br>
             <label>Username or Email</label>
-            <input type = "text" name = "username" size = "40" required>
-            <br><br>
+            <input type="text" name="username" required>
             <label>Password</label>
-            <input type = "password" name = "password" size = "40" required>
-            <br><br><br>
-            <input type = "checkbox" checked = "checked"> Stay logged in
-            <br><br>
-            <button type = "submit" name = "enter">Login</button>
-            <br><br>
+            <input type="password" name="password" required>
+            <input type="checkbox" checked> Stay logged in
+            <br>
+            <button type="submit">Login</button>
         </form>
     </body>
 </html>
