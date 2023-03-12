@@ -27,10 +27,10 @@ $(document).ready(function() {
                 var box = widget_clone(ui, canvas);
                 droppable_continer_cloned(box.children('.widget-container'));
                 canvas_css_Setup_canvas(ui, box, canvas, 'true');
-            }else{
+                }else{
                     // if its not a new widget, it gets not cloning, because I am mean like that
                     canvas.append(ui.draggable);
-                    canvas_css_Setup_canvas(ui, box, canvas, 'false');
+                    //canvas_css_Setup_canvas(ui, box, canvas, 'false');
                 }
                 
             }
@@ -53,8 +53,9 @@ $(document).ready(function() {
                 'left': ui.position.left  + 'px',
                 'top': ui.position.top+ 'px'
             };
-        }
+        }else{
         box.css(position);
+        }
     }
 	
     // This makes the widget_container so it can accept droppable mini widgets
