@@ -6,11 +6,11 @@ In order to update the docker file run
 
 ```
 docker build -t myflaskapp .
-docker run -i --rm --name myflaskappcontainer -p 5000:5000 -v "$PWD/Capstone_site:/app" myflaskapp:latest 
+docker run -i --rm --name myflaskappcontainer -p 8000:8000 -v "$PWD/Capstone_site:/app" myflaskapp:latest 
 ```
 Or if you wanna do it all at once
 ```
-docker build -t myflaskapp .;docker run -i --rm --name myflaskappcontainer -p 5000:5000 -v "$PWD/Capstone_site:/app" myflaskapp:latest 
+docker build -t myflaskapp .;docker run -i --rm --name myflaskappcontainer -p 8000:8000 -v "$PWD/Capstone_site:/app" myflaskapp:latest 
 ```
 
 
@@ -22,11 +22,11 @@ IF you wish to run just the html and due to docker issues just run the app.py fi
 flask run
 ```
 
-1. http://0.0.0.0:5000/ returns nothing when I open it in my browser
+1. http://0.0.0.0:8000/ returns nothing when I open it in my browser
 
 Use this in the browser URL instead
 ```
-    localhost:5000
+    localhost:8000
 ```
 2.pip install -r requirements.txt
 
