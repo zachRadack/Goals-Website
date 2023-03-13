@@ -153,14 +153,14 @@
   <body>
     <header>
       <nav>
-        <a href="#"><img src="../Assets/temp_fake_logo.png" alt="GoalPost.io"></a>
+        <a href="{{ url_for('static', filename='index.html') }}"><img src="../static/Assets/temp_fake_logo.png" alt="GoalPost.io"></a>
         <ul>
           <li><a href="#">About</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="{{ url_for('static', filename='faq.html') }}">FAQ</a></li>
         </ul>
         <div class="login">
-          <a href="login.html" class="login-btn">Login</a>
-          <a href="signup.html" class="signup-btn">Sign Up</a>
+          <a href="{{ url_for('static', filename='login.html') }}" class="login-btn">Login</a>
+          <a href="{{ url_for('static', filename='signup.html') }}" class="signup-btn">Sign Up</a>
         </div>
       </nav>
     </header>
@@ -174,10 +174,10 @@
     <div class="features">
       <h2>Features</h2>
       <ul>
-        <li><img src="https://www.example.com/images/feature-1.png" alt="Feature 1"><h3>Feature 1</h3><p>Description</p></li>
-        <li><img src="https://www.example.com/images/feature-2.png" alt="Feature 2"><h3>Feature 2</h3><p>Description</p></li>
-        <li><img src="https://www.example.com/images/feature-3.png" alt="Feature 3"><h3>Feature 3</h3><p>Description</p></li>
-        <li><img src="https://www.example.com/images/feature-4.png" alt="Feature 4"><h3>Feature 4</h3><p>Description</p></li>
+        <li><img src="#" alt="Feature 1"><h3>Feature 1</h3><p>Description</p></li>
+        <li><img src="#" alt="Feature 2"><h3>Feature 2</h3><p>Description</p></li>
+        <li><img src="#" alt="Feature 3"><h3>Feature 3</h3><p>Description</p></li>
+        <li><img src="#" alt="Feature 4"><h3>Feature 4</h3><p>Description</p></li>
       </ul>
     </div>
     

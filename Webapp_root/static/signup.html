@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>GoalPost.io Sign Up</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+            }
+            h1 {
+                text-align: center;
+            }
+            .container {
+                display: flex;
+            }
+            form {
+                background-color: #ffffff;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                order: 1;
+            }
+            .terms-container {
+                max-width: 400px;
+                margin: 0 20px;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                order: 2;
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                background-color: #fff;
+                overflow: auto;
+                max-height: 400px;
+}
+            label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            input[type="text"],
+            input[type="password"] {
+                width: 92%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            input[type="checkbox"] {
+                display: inline-block;
+                margin-right: 5px;
+            }
+            button[type="submit"] {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            a.terms-link {
+                text-decoration: underline;
+                color: blue;
+                cursor: pointer;
+            }
+            .close-button {
+                display: block;
+                margin: 10px auto 0;
+                padding: 10px;
+                background-color: #ccc;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            hr {
+                border: none;
+                height: 2px;
+                background-color: #d2d2d2;
+                margin: 0px 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <br>
+        <br>
+        <h1>GoalPost.io Sign Up</h1>
+        <hr>
+        <br>
+        <br>
+        <div class="container">
+            <form>
+                <label>Username</label>
+                <input type="text" name="username" required>
+                <label>Email</label>
+                <input type="text" name="email" required>
+                <label>Password</label>
+                <input type="password" name="password" required>
+                <label>Confirm Password</label>
+                <input type="password" name="confirm" required>
+                <label>
+                    <input type="checkbox" required>
+                    I agree to the <a class="terms-link">terms and conditions</a>
+                </label>
+                <button type="submit" name="enter">Sign up</button>
+            </form>
+            <div class="terms-container">
+                <h2>Terms and Conditions</h2>
+                <p>Overview: By using this website, you agree to the terms and conditions set forth in this document. This website is designed to help users track and achieve their goals. The website is provided to you free of charge, and is intended for personal use only.</p>
+                <p>User Content: You are responsible for all content that you post on this website. By posting content, you grant us a non-exclusive, transferable, sub-licensable, royalty-free, worldwide license to use, copy, modify, create derivative works based on, distribute, publicly display, publicly perform, and otherwise exploit in any manner such content in all formats and distribution channels now known or hereafter devised (including in connection with the Website and our business and on third-party sites and services), without further notice to or consent from you, and without the requirement of payment to you or any other person or entity.</p>
+                <p>User Conduct: You agree to use this website for lawful purposes only. You will not use this website to post or transmit any material that is infringing, libelous, defamatory, obscene, pornographic, abusive, or threatening, or that otherwise violates any law or right of any third party. You also agree not to use this website to send unsolicited commercial messages or to engage in any other conduct that interferes with other users' use of the website.</p>
+                <p>Limitations of Liability: We are not liable for any damages or losses resulting from your use of this website. We make no warranties or representations about the accuracy or completeness of the information on this website. We are not responsible for any errors or omissions in the information on this website.</p>
+                <p>Indemnification: You agree to indemnify us, our affiliates, and our respective officers, directors, employees, and agents, from any claim, demand, loss, or damage, including reasonable attorneys' fees, arising out of or related to your use of this website or your violation of these terms and conditions.</p>
+                <p>Governing Law: These terms and conditions are governed by the laws of the state of Arizona, without regard to its conflict of laws principles.</p>
+                <p>Changes to Terms and Conditions: We reserve the right to change these terms and conditions at any time. Your continued use of this website following the posting of changes to these terms and conditions will constitute your acceptance of such changes.</p>
+                <p>By using this website, you acknowledge that you have read and understand these terms and conditions, and that you agree to be bound by them.</p>
+                <button class="close-button">Close</button>
+            </div>
+        </div>
+        <script>
+            var termsLink = document.querySelector('.terms-link');
+            var termsContainer = document.querySelector('.terms-container');
+            var closeButton = document.querySelector('.close-button');
+          
+            termsLink.addEventListener('click', function() {
+              termsContainer.style.display = 'block';
+            });
+          
+            closeButton.addEventListener('click', function() {
+              termsContainer.style.display = 'none';
+            });
+          </script>
+    </body>
+</html>
