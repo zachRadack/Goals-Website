@@ -20,8 +20,8 @@ RUN pip3 install -r requirements.txt
 # Copy the rest of the application files to the container
 COPY . .
 
-# Expose port 5000 for the Flask application to listen on
-EXPOSE 5000
+# Expose port 8000 for the Flask application to listen on
+EXPOSE 8000
 
 # Run the command to start the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0","-p 8000"]
