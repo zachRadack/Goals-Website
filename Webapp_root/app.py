@@ -14,5 +14,17 @@ def login():
 def home():
     return render_template("home.html")
 
+@app.route("/faq", methods=['GET', 'POST'])
+def faq():
+    return render_template("faq.html")
+
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+    return render_template("signup.html")
+
+@app.route("/settings", methods=['GET', 'POST'])
+def settings():
+    return render_template("settings.html")
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
